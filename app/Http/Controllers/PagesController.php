@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use App\Tb_user;
+// use App\Tb_user;
+use Auth;
 
 use function PHPUnit\Framework\returnSelf;
 
 class PagesController extends Controller
 {
     public function index(){
-
-        return view ('master.login');
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('login');
+        }
+        // return view ('master.login');
     }
     public function login(Request $request)
     {

@@ -15,12 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index');
 // Route::post('login', 'PagesController@login');
-Route::get('dashboard', 'PagesController@home');
-Route::resource('user', 'UserController');
-Route::resource('magang','MagangController');
-Route::get('absensi', 'AbsensiController@index');
-Route::get('quest', 'QuestController@index');
-Route::get('report', 'ReportController@index');
+Route::group(['middleware' => ['isAdmin']], function () {
+    Route::resource('user', 'UserController');
+    Route::resource('magang','MagangController');
+});
+Route::group(['middleware' => ['isSiswa']], function () {
+    Route::get('dashboard', 'PagesController@home')->name('dashboard');
+    Route::get('absensi', 'AbsensiController@index');
+    Route::get('quest', 'QuestController@index');
+    Route::get('report', 'ReportController@index');
+});
 
 
 Auth::routes(['register' => false]);

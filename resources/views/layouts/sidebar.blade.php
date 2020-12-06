@@ -34,32 +34,38 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Master Data
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{url('user')}}" class="nav-link">
+          @auth
+          
+            @if (Auth::user()->level === 'Admin')
+              <li class="nav-item has-treeview menu">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                    Master Data
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{url('user')}}" class="nav-link">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                          <p>
+                            User
+                          </p>
+                        </a>
+                      </li>
+                  <li class="nav-item">
+                    <a href="{{url('magang')}}" class="nav-link">
                         <i class="nav-icon far fa-circle nav-icon"></i>
                       <p>
-                        User
+                        Data Magang
                       </p>
                     </a>
                   </li>
-              <li class="nav-item">
-                <a href="{{url('magang')}}" class="nav-link">
-                    <i class="nav-icon far fa-circle nav-icon"></i>
-                  <p>
-                    Data Magang
-                  </p>
-                </a>
+                </ul>
               </li>
-            </ul>
+            @endif
+          @endauth
           <li class="nav-item">
             <a href="{{url('absensi')}}" class="nav-link">
                 <i class="nav-icon fas fa-calendar-check"></i>
@@ -85,16 +91,30 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('/')}}" class="nav-link">
+            <a href="#" class="nav-link" onclick="submit()">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout
               </p>
             </a>
           </li>
+          <form action="{{ route('logout') }}" method="post" class="nav-link" id="form" hidden >
+            @csrf
+            <button class="nav-link" style="background-color: transparent; border: transparent 0px" >
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            </button>
+          </form>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+  <script>
+    function submit() {
+      document.getElementById("form").submit()
+    }
+  </script>

@@ -21,8 +21,8 @@
                     <span style="color: red">@error('password'){{ $massage}}@enderror</span>
                 </div>
                 <div class="form-group">
-                    <label for="id">Data Magang</label>
-                    <select class="form-control" name="id" value="{{old('id')}}">
+                    <label for="magang_id">Data Magang</label>
+                    <select class="form-control" name="magang_id" value="{{old('magang_id')}}">
                         <option>Pilih</option>
                         @foreach ($set_magang as $mgn)
                         <option value="{{ $mgn->id }}"> {{ $mgn->nama }} </option>

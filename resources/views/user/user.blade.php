@@ -28,9 +28,9 @@
                         <td>{{ $usr->username}}</td>
                         <td>{{ $usr->level}}</td>
                         <td>
-                            <a href="{{ route('user.edit',[$usr->id_user ]) }}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{ route('user.show',[$usr->id_user]) }}" class="btn btn-secondary btn-sm">Detail</a>
-                            <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="d-inline" action="{{route('user.destroy', [$usr->id_user])}}" method="POST">
+                            <a href="{{ route('user.edit',[$usr->id ]) }}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{ route('user.show',[$usr->id]) }}" class="btn btn-secondary btn-sm">Detail</a>
+                            <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="d-inline" action="{{route('user.destroy', [$usr->id])}}" method="POST">
 
                                 @csrf
 
